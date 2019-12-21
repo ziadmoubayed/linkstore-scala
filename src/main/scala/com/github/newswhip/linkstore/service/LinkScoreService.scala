@@ -2,11 +2,11 @@ package com.github.newswhip.linkstore.service
 
 import com.github.newswhip.linkstore.LinkVO
 import com.github.newswhip.linkstore.repo.LinkVORepository
-import com.github.newswhip.linkstore.repo.impl.InMemoryLinkVORepo
+import com.github.newswhip.linkstore.repo.impl.{InMemoryLinkVORepo, RedisLinkVORepo}
 
 object LinkScoreService {
 
-  val linkVORepository: LinkVORepository = new InMemoryLinkVORepo()
+  val linkVORepository: LinkVORepository = new RedisLinkVORepo()
 
   /**
     * Adds a link with it's score to the data store.
