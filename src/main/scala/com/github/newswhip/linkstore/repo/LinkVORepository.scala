@@ -1,7 +1,5 @@
 package com.github.newswhip.linkstore.repo
 
-import java.util.stream.Stream
-
 import com.github.newswhip.linkstore.LinkVO
 
 trait LinkVORepository {

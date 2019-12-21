@@ -1,6 +1,5 @@
 import com.github.newswhip.linkstore.common.Constants
 import com.github.newswhip.linkstore.service.LinkScoreService
-import com.github.newswhip.linkstore.service.reports.ReportGenerator
 import com.github.newswhip.linkstore.service.reports.impl.CSVDomainReportGenerator
 import org.scalatest.{BeforeAndAfter, FlatSpec}
 

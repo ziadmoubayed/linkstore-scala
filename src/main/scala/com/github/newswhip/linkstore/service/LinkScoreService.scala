@@ -6,7 +6,15 @@ import com.github.newswhip.linkstore.repo.impl.{InMemoryLinkVORepo, RedisLinkVOR
 
 object LinkScoreService {
 
-  val linkVORepository: LinkVORepository = new RedisLinkVORepo()
+  val linkVORepository: LinkVORepository = init
+
+  def init = {
+    scala.util.Properties.envOrNone("LIVE_STORE_ENV") match {
+      case Some("redis") => new RedisLinkVORepo()
+      case _ => new InMemoryLinkVORepo()
+    }
+  }
+
 
   /**
     * Adds a link with it's score to the data store.

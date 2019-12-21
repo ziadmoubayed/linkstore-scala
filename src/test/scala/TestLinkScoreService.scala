@@ -8,6 +8,7 @@ class TestLinkScoreService extends FlatSpec with BeforeAndAfter {
   private var RANDOM_SCORE = 0L
 
   before {
+    LinkScoreService.flushStore()
     SAME_DOMAINS = Array[String]("http://google.com/23456", "https://google.com/123", "https://google.com/asdascz", "https://google.com/12adszxc")
     DIFFERENT_DOMAINS = Array[String]("https://google1.com/123", "https://google2.com/123", "https://google3.com/123", "https://google4.com/123")
     RANDOM_SCORE = Math.floor(Math.random * 1000).toLong
