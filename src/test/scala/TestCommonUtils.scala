@@ -18,4 +18,13 @@ class TestCommonUtils extends FlatSpec {
   "checkHeaders" should "add http:// if missing" in {
     DOMAIN_WITHOUT_HTTP.foreach(DOMAIN => assert(CommonUtils.addHttp(DOMAIN) == "http://" + DOMAIN))
   }
+
+  "some generic test" should "succeed" in {
+    assert("example.com" == CommonUtils.getDomain("https://example.com/path/"))
+    assert("subpart.example.com" == CommonUtils.getDomain("http://subpart.example.com/path/"))
+    assert("example.com" == CommonUtils.getDomain("http://example.com"))
+    assert("example.com" == CommonUtils.getDomain("http://example.com:18445/path/"))
+    assert("example.com" == CommonUtils.getDomain("example.com/path/"))
+    assert("example.com" == CommonUtils.getDomain("example.com"))
+  }
 }
