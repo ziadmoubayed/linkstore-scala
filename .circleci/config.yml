@@ -40,3 +40,8 @@ jobs:
 
       # run tests!
       - run: cat /dev/null | sbt test:test
+  workflows:
+    main:
+      jobs:
+        - build:
+            context: SonarCloud
