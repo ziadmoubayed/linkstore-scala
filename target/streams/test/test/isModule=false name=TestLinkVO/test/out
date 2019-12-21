@@ -1,0 +1,13 @@
+[0m[[0m[0minfo[0m] [0m[0m[32mTestLinkVO:[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mlink1 == link1[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should return true[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mhttp://google.com/123 == http://google.com/123[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should be equal[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mhttp://google.com/123 != http://google.com/234[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not be equal[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32mhttp://google1.com != http://google.com[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not be equal[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m(http://google.com/123).getDomain() != (http://google.com)/234.getDomain()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should be equal[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m(http://google.com/234).getDomain() != (google1.com/234).getDomain()[0m[0m
+[0m[[0m[0minfo[0m] [0m[0m[32m- should not be equal[0m[0m
