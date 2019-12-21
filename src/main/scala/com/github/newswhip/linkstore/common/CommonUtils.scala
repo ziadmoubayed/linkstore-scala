@@ -11,8 +11,9 @@ object CommonUtils {
     * @return domain name without http:// and www.
     */
   def getDomain(urlString: String): String = {
-    val uri = URI.create(checkHeaders(urlString))
+    val uri = URI.create(addHttp(urlString))
     val domain = uri.getHost
+    if(domain == null) throw new IllegalArgumentException("Invalid url: " + urlString);
     if (domain.startsWith("www.")) domain.substring(4)
     else domain
   }
@@ -23,8 +24,8 @@ object CommonUtils {
     * @param urlString
     * @return
     */
-  def checkHeaders(urlString: String): String = {
-    if (!urlString.startsWith("http://") || urlString.startsWith("https://"))
+  def addHttp(urlString: String): String = {
+    if (!(urlString.startsWith("http://") || urlString.startsWith("https://")))
       return "http://" + urlString
     return urlString
   }

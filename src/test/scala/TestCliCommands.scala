@@ -1,4 +1,5 @@
 import com.github.newswhip.linkstore.cli.LinkStore
+import com.github.newswhip.linkstore.common.CommonUtils
 import com.github.newswhip.linkstore.service.LinkScoreService
 import org.scalatest.{BeforeAndAfter, FlatSpec}
 import picocli.CommandLine
@@ -22,7 +23,8 @@ class TestCliCommands extends FlatSpec with BeforeAndAfter {
   "Add Command" should "add a link when executed" in {
     SAME_DOMAINS.map(SAME_DOMAIN => "add " + SAME_DOMAIN + " " + RANDOM_SCORE)
       .foreach(cmd => new CommandLine(new LinkStore).execute(cmd.split(" "): _*))
-    assert(SAME_DOMAINS.length == LinkScoreService.getDomainStats()(SAME_DOMAINS(0))._1)
+    assert(SAME_DOMAINS.length == LinkScoreService.getDomainStats()(CommonUtils.getDomain(SAME_DOMAINS(0)))._1)
+    assert(1 == LinkScoreService.getDomainStats().size)
   }
 
   "Remove Command" should "remove a link when executed" in {

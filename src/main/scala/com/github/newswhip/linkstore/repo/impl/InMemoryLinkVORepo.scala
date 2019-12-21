@@ -14,10 +14,7 @@ class InMemoryLinkVORepo extends LinkVORepository {
     store = store - (linkVO)
   }
 
-  override def getLinks: Set[LinkVO] = {
-    println(store)
-    store
-  }
+  override def getLinks: Set[LinkVO] = store
 
   override def deleteAll() = {
     store = Set()
