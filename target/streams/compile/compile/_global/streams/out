@@ -1,6 +1,0 @@
-[0m[[0m[33mwarn[0m] [0m[0m/home/ziad/test/linkstore-scala/src/main/scala/com/github/newswhip/linkstore/App.scala:19:13: match may not be exhaustive.[0m
-[0m[[0m[33mwarn[0m] [0m[0mIt would fail on the following input: false[0m
-[0m[[0m[33mwarn[0m] [0m[0m      input.hasNext match {[0m
-[0m[[0m[33mwarn[0m] [0m[0m            ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mthere were three deprecation warnings (since 2.13.0); re-run with -deprecation for details[0m
-[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
