@@ -1,5 +1,4 @@
 import com.github.newswhip.linkstore.LinkVO
-import com.github.newswhip.linkstore.repo.LinkVORepository
 import com.github.newswhip.linkstore.repo.impl.InMemoryLinkVORepo
 import org.scalatest.{BeforeAndAfter, FlatSpec}
 

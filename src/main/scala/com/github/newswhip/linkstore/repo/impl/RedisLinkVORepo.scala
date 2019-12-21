@@ -1,6 +1,7 @@
 package com.github.newswhip.linkstore.repo.impl
 
 import com.github.newswhip.linkstore.LinkVO
+import com.github.newswhip.linkstore.common.Constants
 import com.github.newswhip.linkstore.repo.LinkVORepository
 import com.typesafe.scalalogging.Logger
 import redis.clients.jedis.Jedis
@@ -12,7 +13,7 @@ import scala.util.{Failure, Success, Try}
 class RedisLinkVORepo extends LinkVORepository {
 
   val logger = Logger(classOf[RedisLinkVORepo])
-  val REDIS_SET = "myset"
+  val REDIS_SET = Constants.REDIS_MAP
 
 
   override def addLink(linkVO: LinkVO) = {
@@ -40,7 +41,7 @@ class RedisLinkVORepo extends LinkVORepository {
   }
 
   override def deleteAll() = {
-    Try(new Jedis().flushDB()) match {
+    Try(new Jedis().del(REDIS_SET)) match {
       case Success(value) => logger.trace("Success")
       case Failure(exception) => logger.error("Error flushing redis database", exception)
     }
