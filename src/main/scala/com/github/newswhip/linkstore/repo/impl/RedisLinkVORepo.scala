@@ -17,6 +17,7 @@ class RedisLinkVORepo extends LinkVORepository {
 
 
   override def addLink(linkVO: LinkVO) = {
+    logger.info("Adding link")
     Try(new Jedis().hset(REDIS_SET, linkVO.url, linkVO.score.toString)) match {
       case Success(value) => logger.trace("Success")
       case Failure(exception) => logger.error("Error Adding Link", exception)
