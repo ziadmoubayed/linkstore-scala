@@ -1,6 +1,7 @@
 package com.github.newswhip.linkstore.service
 
 import com.github.newswhip.linkstore.LinkVO
+import com.github.newswhip.linkstore.common.Constants
 import com.github.newswhip.linkstore.repo.LinkVORepository
 import com.github.newswhip.linkstore.repo.impl.{InMemoryLinkVORepo, RedisLinkVORepo}
 
@@ -9,7 +10,7 @@ object LinkScoreService {
   val linkVORepository: LinkVORepository = init
 
   def init = {
-    scala.util.Properties.envOrNone("LIVE_STORE_ENV") match {
+    scala.util.Properties.envOrNone(Constants.LIVE_STORE_ENV) match {
       case Some("redis") => new RedisLinkVORepo()
       case _ => new InMemoryLinkVORepo()
     }

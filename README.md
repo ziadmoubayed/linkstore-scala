@@ -4,3 +4,8 @@
 
 Link Store is a system for storing URLs with social interaction and exporting statistical summaries associated with these URLs.
 
+## Usage
+````
+docker build -t linkstorescala .
+docker run --rm -it -e LIVE_STORE_ENV='redis' -v /usr/lib/redis:/usr/lib/redis linkstorescala
+````

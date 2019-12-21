@@ -15,7 +15,8 @@ RUN \
 WORKDIR /livestore
 
 COPY . /livestore
-
-CMD sbt run
+COPY start.sh /livestore
+RUN ["chmod", "+x", "/livestore/start.sh"]
+CMD /livestore/start.sh
 
 
