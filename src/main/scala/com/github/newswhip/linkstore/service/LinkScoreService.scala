@@ -10,7 +10,7 @@ object LinkScoreService {
   val linkVORepository: LinkVORepository = init
 
   def init = {
-    scala.util.Properties.envOrNone(Constants.LIVE_STORE_ENV) match {
+    Constants.DATA_STORE match {
       case Some("redis") => new RedisLinkVORepo()
       case _ => new InMemoryLinkVORepo()
     }
