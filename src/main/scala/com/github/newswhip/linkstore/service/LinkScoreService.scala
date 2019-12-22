@@ -1,7 +1,7 @@
 package com.github.newswhip.linkstore.service
 
 import com.github.newswhip.linkstore.LinkVO
-import com.github.newswhip.linkstore.common.Constants
+import com.github.newswhip.linkstore.common.{CommonUtils, Constants}
 import com.github.newswhip.linkstore.repo.LinkVORepository
 import com.github.newswhip.linkstore.repo.impl.{InMemoryLinkVORepo, RedisLinkVORepo}
 
@@ -10,7 +10,7 @@ object LinkScoreService {
   val linkVORepository: LinkVORepository = init
 
   def init = {
-    scala.util.Properties.envOrNone(Constants.LIVE_STORE_ENV) match {
+    Constants.DATA_STORE match {
       case Some("redis") => new RedisLinkVORepo()
       case _ => new InMemoryLinkVORepo()
     }
@@ -25,7 +25,7 @@ object LinkScoreService {
     */
   def addLink(url: String, score: Long) = {
     if (score < 0) throw new IllegalArgumentException("Invalid score. It should be a whole number, greater or equal to zero")
-    this.linkVORepository.addLink(new LinkVO(url, score))
+    this.linkVORepository.addLink(new LinkVO(normalizeUrl(url), score))
   }
 
   /**
@@ -34,7 +34,7 @@ object LinkScoreService {
     * @param url
     */
   def removeLink(url: String) = {
-    this.linkVORepository.removeLink(new LinkVO(url))
+    this.linkVORepository.removeLink(new LinkVO(normalizeUrl(url)))
   }
 
   /**
@@ -59,4 +59,6 @@ object LinkScoreService {
       .foldLeft(Map[String, (Int, Long)]().withDefaultValue((0, 0L)))((left, right) => {
         left + (right._1 -> (left(right._1)._1 + right._2._1, left(right._1)._2 + right._2._2))
       })
+
+  def normalizeUrl(url: String) = CommonUtils.normalizeURL(url)
 }
