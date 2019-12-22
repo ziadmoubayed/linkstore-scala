@@ -27,7 +27,7 @@ Once done, run the Docker image. To use redis add the environment variable -e LI
 Note: You need to start the docker in interactive mode to use the REPL.
 
 ```sh
-docker run -it -e LIVE_STORE_ENV='redis' -v /usr/lib/redis:/usr/lib/redis linkstorescala
+$ docker run -it -e LIVE_STORE_ENV='redis' -v /usr/lib/redis:/usr/lib/redis linkstorescala
 ```
 
 ### Building for source
@@ -36,6 +36,19 @@ Choose and download a [release](https://github.com/ziadmoubayed/linkstore-scala/
 ```sh
 $ sbt run
 ```
+
+## Usage
+When the project starts, you will be presented with a REPL. You can use the following commands to access the REPL.
+
+```
+add http://google.com 12312
+add facebook.com/123123 123
+export
+remove http://google.com
+add twitter/tweets/latest 1234124
+export -f /tmp/export.csv
+````
+Note: Export prints to the console unless -f or --file is specified.
 
 ### Todos
 
