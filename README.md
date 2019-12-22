@@ -4,7 +4,7 @@
 
 Link Store is a system for storing URLs with social interactions and exporting statistical summaries associated with these URLs. It is a scala application packaged using sbt.
 Link Store currently uses either [Redis Hashes](https://redis.io/topics/data-types) or an In-Memory Set to store the data. You can add different data stores by extending the [LinkVORepository](https://github.com/ziadmoubayed/linkstore-scala/blob/master/src/main/scala/com/github/newswhip/linkstore/repo/LinkVORepository.scala). When the project starts it presents a REPL which can be used to manage the system.
-The REPL exposes these functionalites.
+The REPL exposes these functionalites:
   - Add a new url to the store with a social score.
   - Remove a url from the store.
   - Export a report that aggregates sum of social scores and domain count.
@@ -13,7 +13,7 @@ The REPL exposes these functionalites.
 ## Installation
 
 Link Store uses the InMemory Store by Default. To switch to redis you can add the environment variable LIVE_STORE_ENV="redis".
-### Docker
+### Docker (Recommended)
 Link Store is very easy to install and deploy in a Docker container.
 
 ```sh
@@ -28,6 +28,16 @@ Note: You need to start the docker in interactive mode to use the REPL.
 
 ```sh
 $ docker run -it -e LIVE_STORE_ENV='redis' -v /usr/lib/redis:/usr/lib/redis linkstorescala
+```
+
+**Note (Only for Docker)**: Docker containers are isolated from the outside world. To export a report and be able to access it from the external file system. You need to mount a directory that you will export the reports to inside the docker. To do this please use the following command:
+```sh
+$ docker run --mount type=bind,source="$(pwd)/reports",target=/livestore/reports -it linkstorescala
+```
+This command will mount the reports folder inside the project into the docker. When you gnerate a report you need to write the following command.
+
+```
+export -f reports/reportname.csv
 ```
 
 ### Building for source
